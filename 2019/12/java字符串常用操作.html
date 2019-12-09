@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/sen1.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/sen1.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="​     ​                java字符串常用操作">
+<meta name="keywords" content="java,代码,字符串操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java字符串常用操作">
+<meta property="og:url" content="http://www.sqlsec.com/2019/12/java字符串常用操作.html">
+<meta property="og:site_name" content="森罗天下＆博客">
+<meta property="og:description" content="​     ​                java字符串常用操作">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575859779597.png">
+<meta property="og:updated_time" content="2019-12-09T06:20:49.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java字符串常用操作">
+<meta name="twitter:description" content="​     ​                java字符串常用操作">
+<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575859779597.png">
+  <link rel="canonical" href="http://www.sqlsec.com/2019/12/java字符串常用操作">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java字符串常用操作 | 森罗天下＆博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">森罗天下＆博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">记录生活中的点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.sqlsec.com/2019/12/java字符串常用操作.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LX">
+      <meta itemprop="description" content="无聊写写东西咯">
+      <meta itemprop="image" content="/images/sen1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="森罗天下＆博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            java字符串常用操作
+            
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-09 09:08:02 / 修改时间：14:20:49" itemprop="dateCreated datePublished" datetime="2019-12-09T09:08:02+08:00">2019-12-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/12/java字符串常用操作.html" class="post-meta-item leancloud_visitors" data-flag-title="java字符串常用操作" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​    </p>
+<p>​                java字符串常用操作</p>
+<a id="more"></a>
+
+<h1 id="一、基础操作"><a href="#一、基础操作" class="headerlink" title="一、基础操作"></a>一、基础操作</h1><p>​    官方文档链接：<a href https: www.runoob.com manual jdk1.6 java lang string.html"">点这里</a>    </p>
+<p>​    根据java.lang包的api介绍，我们可以知道：</p>
+<h2 id="1、String类简介"><a href="#1、String类简介" class="headerlink" title="1、String类简介"></a>1、String类简介</h2><p>​    <code>String</code> 类代表字符串。Java 程序中的所有字符串字面值（如 <code>&quot;abc&quot;</code> ）都作为此类的实例实现。</p>
+<p>字符串是常量；它们的值在创建之后不能更改。字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。例如：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;      String str = &quot;abc&quot;;</span><br><span class="line">&gt;  </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>等效于：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;      char data[] = &#123;&apos;a&apos;, &apos;b&apos;, &apos;c&apos;&#125;;</span><br><span class="line">&gt;      String str = new String(data);</span><br><span class="line">&gt;  </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>下面给出了一些如何使用字符串的更多示例：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;      System.out.println(&quot;abc&quot;);</span><br><span class="line">&gt;      String cde = &quot;cde&quot;;</span><br><span class="line">&gt;      System.out.println(&quot;abc&quot; + cde);</span><br><span class="line">&gt;      String c = &quot;abc&quot;.substring(2,3);</span><br><span class="line">&gt;      String d = cde.substring(1, 2);</span><br><span class="line">&gt;  </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>String</code> 类包括的方法可用于检查序列的单个字符、比较字符串、搜索字符串、提取子字符串、创建字符串副本并将所有字符全部转换为大写或小写。</p>
+<h2 id="2、常用方法摘要"><a href="#2、常用方法摘要" class="headerlink" title="2、常用方法摘要"></a>2、常用方法摘要</h2><h3 id="1-字符串比较"><a href="#1-字符串比较" class="headerlink" title="1.字符串比较"></a>1.字符串比较</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span></span></span><br><span class="line"><span class="function">         将此字符串与指定的对象比较。</span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equalsIgnoreCase</span><span class="params">(String anotherString)</span></span></span><br><span class="line"><span class="function">         将此 String 与另一个 String 比较，不考虑大小写。</span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contentEquals</span><span class="params">(StringBuffer sb)</span></span></span><br><span class="line"><span class="function">         将此字符串与指定的 StringBuffer 比较。   </span></span><br><span class="line"><span class="function">      </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">         当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。 </span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"> <span class="keyword">boolean</span> <span class="title">regionMatches</span><span class="params">(<span class="keyword">boolean</span> ignoreCase, <span class="keyword">int</span> toffset, String other, <span class="keyword">int</span> ooffset, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function">         测试两个字符串区域是否相等。</span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">regionMatches</span><span class="params">(<span class="keyword">int</span> toffset, String other, <span class="keyword">int</span> ooffset, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function">         测试两个字符串区域是否相等。</span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">startsWith</span><span class="params">(String prefix)</span></span></span><br><span class="line"><span class="function">         测试此字符串是否以指定的前缀开始。</span></span><br><span class="line"><span class="function">         </span></span><br><span class="line"><span class="function"> <span class="keyword">boolean</span> <span class="title">endsWith</span><span class="params">(String suffix)</span></span></span><br><span class="line"><span class="function">         测试此字符串是否以指定的后缀结束。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-字符串截取"><a href="#2-字符串截取" class="headerlink" title="2.字符串截取"></a>2.字符串截取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">char</span>	<span class="title">charAt</span><span class="params">(<span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function">          返回指定索引处的 <span class="keyword">char</span> 值。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> <span class="keyword">int</span>	<span class="title">indexOf</span><span class="params">(<span class="keyword">int</span> ch)</span></span></span><br><span class="line"><span class="function">          返回指定字符在此字符串中第一次出现处的索引。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> <span class="keyword">int</span>	<span class="title">indexOf</span><span class="params">(<span class="keyword">int</span> ch, <span class="keyword">int</span> fromIndex)</span></span></span><br><span class="line"><span class="function">     	  返回在此字符串中第一次出现指定字符处的索引，从指定的索引开始搜索。</span></span><br><span class="line"><span class="function">     	  </span></span><br><span class="line"><span class="function"> <span class="keyword">int</span>	<span class="title">indexOf</span><span class="params">(String str)</span></span></span><br><span class="line"><span class="function">          返回指定子字符串在此字符串中第一次出现处的索引。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> <span class="keyword">int</span>	<span class="title">indexOf</span><span class="params">(String str, <span class="keyword">int</span> fromIndex)</span></span></span><br><span class="line"><span class="function">          返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始。</span></span><br><span class="line"><span class="function"> String[]	<span class="title">split</span><span class="params">(String regex)</span></span></span><br><span class="line"><span class="function">          根据给定正则表达式的匹配拆分此字符串。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String[]	<span class="title">split</span><span class="params">(String regex, <span class="keyword">int</span> limit)</span></span></span><br><span class="line"><span class="function">          根据匹配给定的正则表达式来拆分此字符串。  </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是此字符串的一个子字符串。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex, <span class="keyword">int</span> endIndex)</span></span></span><br><span class="line"><span class="function">          返回一个新字符串，它是此字符串的一个子字符串。 </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">trim</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回字符串的副本，忽略前导空白和尾部空白。 </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">boolean</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span>[] data)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 数组参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span>[] data, <span class="keyword">int</span> offset, <span class="keyword">int</span> count)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 数组参数的特定子数组的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">double</span> d)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">double</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">float</span> f)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">float</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">int</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">long</span> l)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">long</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">          返回 Object 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">char</span>[]	<span class="title">toCharArray</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          将此字符串转换为一个新的字符数组。          </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">replace</span><span class="params">(CharSequence target, CharSequence replacement)</span></span></span><br><span class="line"><span class="function">          使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">replaceAll</span><span class="params">(String regex, String replacement)</span></span></span><br><span class="line"><span class="function">          使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"> String	<span class="title">replaceFirst</span><span class="params">(String regex, String replacement)</span></span></span><br><span class="line"><span class="function">          使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-字符串判断"><a href="#3-字符串判断" class="headerlink" title="3.字符串判断"></a>3.字符串判断</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>	    	<span class="title">length</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回此字符串的长度。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">int</span>			<span class="title">hashCode</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回此字符串的哈希码。    </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span>		<span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          当且仅当 <span class="title">length</span><span class="params">()</span> 为 0 时返回 <span class="keyword">true</span>。</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> 	<span class="title">equals</span><span class="params">(Object anObject)</span></span></span><br><span class="line"><span class="function">          将此字符串与指定的对象比较。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span>		<span class="title">startsWith</span><span class="params">(String prefix)</span></span></span><br><span class="line"><span class="function">          测试此字符串是否以指定的前缀开始。 </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span>		<span class="title">startsWith</span><span class="params">(String prefix, <span class="keyword">int</span> toffset)</span></span></span><br><span class="line"><span class="function">          测试此字符串从指定索引开始的子字符串是否以指定前缀开始。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span>		<span class="title">endsWith</span><span class="params">(String suffix)</span></span></span><br><span class="line"><span class="function">          测试此字符串是否以指定的后缀结束。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-字符串转换"><a href="#4-字符串转换" class="headerlink" title="4.字符串转换"></a>4.字符串转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function">String	<span class="title">toString</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回此对象本身（它已经是一个字符串！）。</span></span><br><span class="line"><span class="function"> String	<span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是此字符串的一个子字符串。</span></span><br><span class="line"><span class="function"> String	<span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex, <span class="keyword">int</span> endIndex)</span></span></span><br><span class="line"><span class="function">          返回一个新字符串，它是此字符串的一个子字符串。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">char</span>[]	<span class="title">toCharArray</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          将此字符串转换为一个新的字符数组。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">byte</span>[]	<span class="title">getBytes</span><span class="params">(String charsetName)</span></span></span><br><span class="line"><span class="function">          使用指定的字符集将此 String 编码为 <span class="keyword">byte</span> 序列，并将结果存储到一个新的 <span class="keyword">byte</span> 数组中。   </span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">copyValueOf</span><span class="params">(<span class="keyword">char</span>[] data)</span></span></span><br><span class="line"><span class="function">          返回指定数组中表示该字符序列的 String。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">copyValueOf</span><span class="params">(<span class="keyword">char</span>[] data, <span class="keyword">int</span> offset, <span class="keyword">int</span> count)</span></span></span><br><span class="line"><span class="function">          返回指定数组中表示该字符序列的 String。          </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">boolean</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span>[] data)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 数组参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">char</span>[] data, <span class="keyword">int</span> offset, <span class="keyword">int</span> count)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">char</span> 数组参数的特定子数组的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">double</span> d)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">double</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">float</span> f)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">float</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">int</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">long</span> l)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">long</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">          返回 Object 参数的字符串表示形式。</span></span><br></pre></td></tr></table></figure>
+
+<p>​    以上，便是官方给出的最基础也是最详细的java.lang.String包的介绍，下面我们将学习如何在日常开发中去正确的使用String字符串。                </p>
+<h1 id="二、进阶理解"><a href="#二、进阶理解" class="headerlink" title="二、进阶理解"></a>二、进阶理解</h1><h3 id="1-字符串切割实例"><a href="#1-字符串切割实例" class="headerlink" title="1.字符串切割实例"></a>1.字符串切割实例</h3><h4 id="涉及知识："><a href="#涉及知识：" class="headerlink" title="涉及知识："></a>涉及知识：</h4><h5 id="角标："><a href="#角标：" class="headerlink" title="角标："></a>角标：</h5><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575859779597.png" alt="1575859779597"></p>
+<h4 id="场景1：String字符串去掉前后空格并输出"><a href="#场景1：String字符串去掉前后空格并输出" class="headerlink" title="场景1：String字符串去掉前后空格并输出"></a>场景1：String字符串去掉前后空格并输出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         String str = <span class="string">" AAAAA "</span>;</span><br><span class="line">         System.out.println(str.trim());</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：AAAAA</span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line">	<span class="function">String	<span class="title">trim</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回字符串的副本，忽略前导空白和尾部空白。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景2：String字符串去掉前5个字符并输出"><a href="#场景2：String字符串去掉前5个字符并输出" class="headerlink" title="场景2：String字符串去掉前5个字符并输出"></a>场景2：String字符串去掉前5个字符并输出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         String str = <span class="string">"12345Abc"</span>;</span><br><span class="line">       System.out.println(str.substring(<span class="number">5</span>,str.length()));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：Abc</span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line">	</span><br><span class="line">	在已知字符串的角标时，可以直接输入需要切割字符串为开始切割的位置，字符串总长度为结束位置，即切割角标开始的位置到字符串最后的位置为最终结果。</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span>	    	<span class="title">length</span><span class="params">()</span></span></span><br><span class="line"><span class="function">          返回此字符串的长度。</span></span><br><span class="line"><span class="function">          </span></span><br><span class="line"><span class="function">	String	<span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex, <span class="keyword">int</span> endIndex)</span></span></span><br><span class="line"><span class="function">          返回一个新字符串，它是此字符串的一个子字符串。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景3：String字符串去掉后5个字符并输出"><a href="#场景3：String字符串去掉后5个字符并输出" class="headerlink" title="场景3：String字符串去掉后5个字符并输出"></a>场景3：String字符串去掉后5个字符并输出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"Abc12345"</span>;</span><br><span class="line">       System.out.println(str.substring(str.length()-<span class="number">5</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：<span class="number">12345</span></span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line">		截取字符串位置beginIndex-<span class="number">1</span>及以后的所有字符，注意字符的起始位置是从<span class="number">0</span>开始的。</span><br><span class="line">		length()-<span class="number">5</span>得到字符串总长度的倒数第五个字符的角标、				substring()方法得到剩余字符串。</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景4：String字符串去掉特殊符号并输出"><a href="#场景4：String字符串去掉特殊符号并输出" class="headerlink" title="场景4：String字符串去掉特殊符号并输出"></a>场景4：String字符串去掉特殊符号并输出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       String str = <span class="string">"&amp;&amp;&amp;&amp;12345"</span>;</span><br><span class="line">       System.out.println(str);</span><br><span class="line">        String[] split = str.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        String str2 = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;split.length ; i++) &#123;</span><br><span class="line">            str2+=split[i];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(str2);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印<span class="number">1</span>：&amp;&amp;&amp;&amp;<span class="number">12345</span></span><br><span class="line">打印<span class="number">2</span>：<span class="number">12345</span></span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line">	String[]	split(String regex)</span><br><span class="line">     根据给定正则表达式的匹配拆分此字符串。</span><br><span class="line">  	 split()方法可以直接输入特殊符号进行切割。</span><br><span class="line">  	 实现步骤，首先将字符串转换成数组，然后根据数组去匹配特殊字符，移除特殊字符，返回其他数组</span><br><span class="line">  	 循环得到的数组，拼接到一个新的字符串，打印结果</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景5：String字符串拼接String字符串并输出"><a href="#场景5：String字符串拼接String字符串并输出" class="headerlink" title="场景5：String字符串拼接String字符串并输出"></a>场景5：String字符串拼接String字符串并输出</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       String str = <span class="string">"12345"</span>;</span><br><span class="line"> 	   String str2 = <span class="string">"ABCD"</span>;  </span><br><span class="line">       System.out.println(str+str2);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">打印：<span class="number">12345</span>ABCD</span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line">		字符串的 + 号是拼接符号、</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-字符串替换实例"><a href="#2-字符串替换实例" class="headerlink" title="2.字符串替换实例"></a>2.字符串替换实例</h3><h4 id="场景1：替换字符串出现的特殊字符为A"><a href="#场景1：替换字符串出现的特殊字符为A" class="headerlink" title="场景1：替换字符串出现的特殊字符为A"></a>场景1：替换字符串出现的特殊字符为A</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"字符串字符串字符串字符串字符串字符串字符串"</span>;</span><br><span class="line">        String replace = str.replace(<span class="string">"字"</span>, <span class="string">"A"</span>);</span><br><span class="line">        System.out.println(replace);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：A符串A符串A符串A符串A符串A符串A符串</span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景2：替换字符串出现的空格为B"><a href="#场景2：替换字符串出现的空格为B" class="headerlink" title="场景2：替换字符串出现的空格为B"></a>场景2：替换字符串出现的空格为B</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"字符串 字符串 字符串 字符串 字符串 字符串 字符串"</span>;</span><br><span class="line">        String replace = str.replace(<span class="string">" "</span>, <span class="string">"B"</span>);</span><br><span class="line">        System.out.println(replace);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：字符串B字符串B字符串B字符串B字符串B字符串B字符串</span><br><span class="line"></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br><span class="line"><span class="function">       字符串" "等于空格</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景3：替换字符串出现的字符串为指定字符串"><a href="#场景3：替换字符串出现的字符串为指定字符串" class="headerlink" title="场景3：替换字符串出现的字符串为指定字符串"></a>场景3：替换字符串出现的字符串为指定字符串</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         String str = <span class="string">"字符串 字符串 字符串 字符串 字符串 字符串 字符串"</span>;</span><br><span class="line">        String replace = str.replace(<span class="string">"字符串"</span>, <span class="string">"java"</span>);</span><br><span class="line">        System.out.println(replace);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：java java java java java java java</span><br><span class="line">方法解释：</span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景4：替换字符串出现的字符串为数字"><a href="#场景4：替换字符串出现的字符串为数字" class="headerlink" title="场景4：替换字符串出现的字符串为数字"></a>场景4：替换字符串出现的字符串为数字</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         String str = <span class="string">"字符串 字符串 字符串 字符串 字符串 字符串 字符串"</span>;</span><br><span class="line">        String replace = str.replace(<span class="string">"字符串"</span>, <span class="string">"java"</span>);</span><br><span class="line">        System.out.println(replace);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：<span class="number">100</span> <span class="number">100</span> <span class="number">100</span> <span class="number">100</span> <span class="number">100</span> <span class="number">100</span> <span class="number">100</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String	<span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">          返回 <span class="keyword">int</span> 参数的字符串表示形式。</span></span><br><span class="line"><span class="function">	这里打印的"100" 事实上是字符串"100" 并不是数字100，String.<span class="title">valueOf</span><span class="params">()</span>可以将其他类型的参数转换为字符串</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景5：替换字符串出现的数字为C"><a href="#场景5：替换字符串出现的数字为C" class="headerlink" title="场景5：替换字符串出现的数字为C"></a>场景5：替换字符串出现的数字为C</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrUtils</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">          String str = <span class="string">"字符串1 字符串1 字符串1 字符串1 字符串1 字符串1 字符串1"</span>;</span><br><span class="line">        String replace = str.replace(<span class="string">"1"</span>, <span class="string">"C"</span>);</span><br><span class="line">        System.out.println(replace);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">打印：字符串C 字符串C 字符串C 字符串C 字符串C 字符串C 字符串C</span><br><span class="line">方法解释：</span><br><span class="line"><span class="function">String	<span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar)</span></span></span><br><span class="line"><span class="function">          返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-字符串排序实例"><a href="#3-字符串排序实例" class="headerlink" title="3.字符串排序实例"></a>3.字符串排序实例</h3><h4 id="涉及知识：-1"><a href="#涉及知识：-1" class="headerlink" title="涉及知识："></a>涉及知识：</h4><h5 id="哈希值"><a href="#哈希值" class="headerlink" title="哈希值:"></a>哈希值:</h5><h5 id="1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。"><a href="#1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。" class="headerlink" title="1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。"></a>1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。</h5><pre><code>两个对象要完全相对必须哈希值一样。比较用equal()
+
+PS1：任何类均为Object类的间接子类，所以均继承方法public int hashCode()，该方法返回的值一般是通过将该对象的内部地址转换成一个整数来实现的。这样能保证每个对象的哈希码值不一样
+
+PS2：这里的地址是指JVM虚拟出来的内存地址，不是实际物理内存地址。
+
+PS3：哈希值和地址值是不一样的，哈希值是通过哈希算法散列得来的，而地址值是通过是和物理层面有关，是系统分配的，是不存在相同的，而哈希值是可以通过强制手段设置为相同的，也就是说哈希值是一种逻辑上的确保唯一性，而地址值就是物理上确保唯一性。</code></pre><h5 id="2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。"><a href="#2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。" class="headerlink" title="2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。"></a>2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。</h5><pre><code>比较字符串内容相等。用equal()</code></pre><h5 id="3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer-i1-new-Integer-100-i1-hashCode的值就是100-。由此可见，2个一样大小的Integer对象，返回的哈希码也一样"><a href="#3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer-i1-new-Integer-100-i1-hashCode的值就是100-。由此可见，2个一样大小的Integer对象，返回的哈希码也一样" class="headerlink" title="3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer i1=new Integer(100),i1.hashCode的值就是100 。由此可见，2个一样大小的Integer对象，返回的哈希码也一样"></a>3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer i1=new Integer(100),i1.hashCode的值就是100 。由此可见，2个一样大小的Integer对象，返回的哈希码也一样</h5><pre><code>比较包装数值类型相等。用equal()</code></pre><h5 id="4、简单类型比较相等。用"><a href="#4、简单类型比较相等。用" class="headerlink" title="4、简单类型比较相等。用=="></a>4、简单类型比较相等。用==</h5><h5 id="Ascll码："><a href="#Ascll码：" class="headerlink" title="Ascll码："></a>Ascll码：</h5><h5 id="Ascll码对照表"><a href="#Ascll码对照表" class="headerlink" title="Ascll码对照表"></a>Ascll码对照表</h5><table>
+<thead>
+<tr>
+<th align="left">ASCII值</th>
+<th align="left">控制字符</th>
+<th align="left">ASCII值</th>
+<th align="left">控制字符</th>
+<th align="left">ASCII值</th>
+<th align="left">控制字符</th>
+<th align="left">ASCII值</th>
+<th align="left">控制字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">NUT</td>
+<td align="left">32</td>
+<td align="left">(space)</td>
+<td align="left">64</td>
+<td align="left">@</td>
+<td align="left">96</td>
+<td align="left">、</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">SOH</td>
+<td align="left">33</td>
+<td align="left">!</td>
+<td align="left">65</td>
+<td align="left">A</td>
+<td align="left">97</td>
+<td align="left">a</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">STX</td>
+<td align="left">34</td>
+<td align="left">“</td>
+<td align="left">66</td>
+<td align="left">B</td>
+<td align="left">98</td>
+<td align="left">b</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">ETX</td>
+<td align="left">35</td>
+<td align="left">#</td>
+<td align="left">67</td>
+<td align="left">C</td>
+<td align="left">99</td>
+<td align="left">c</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">EOT</td>
+<td align="left">36</td>
+<td align="left">$</td>
+<td align="left">68</td>
+<td align="left">D</td>
+<td align="left">100</td>
+<td align="left">d</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">ENQ</td>
+<td align="left">37</td>
+<td align="left">%</td>
+<td align="left">69</td>
+<td align="left">E</td>
+<td align="left">101</td>
+<td align="left">e</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">ACK</td>
+<td align="left">38</td>
+<td align="left">&amp;</td>
+<td align="left">70</td>
+<td align="left">F</td>
+<td align="left">102</td>
+<td align="left">f</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">BEL</td>
+<td align="left">39</td>
+<td align="left">,</td>
+<td align="left">71</td>
+<td align="left">G</td>
+<td align="left">103</td>
+<td align="left">g</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">BS</td>
+<td align="left">40</td>
+<td align="left">(</td>
+<td align="left">72</td>
+<td align="left">H</td>
+<td align="left">104</td>
+<td align="left">h</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">HT</td>
+<td align="left">41</td>
+<td align="left">)</td>
+<td align="left">73</td>
+<td align="left">I</td>
+<td align="left">105</td>
+<td align="left">i</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">LF</td>
+<td align="left">42</td>
+<td align="left">*</td>
+<td align="left">74</td>
+<td align="left">J</td>
+<td align="left">106</td>
+<td align="left">j</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">VT</td>
+<td align="left">43</td>
+<td align="left">+</td>
+<td align="left">75</td>
+<td align="left">K</td>
+<td align="left">107</td>
+<td align="left">k</td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td align="left">FF</td>
+<td align="left">44</td>
+<td align="left">,</td>
+<td align="left">76</td>
+<td align="left">L</td>
+<td align="left">108</td>
+<td align="left">l</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">CR</td>
+<td align="left">45</td>
+<td align="left">-</td>
+<td align="left">77</td>
+<td align="left">M</td>
+<td align="left">109</td>
+<td align="left">m</td>
+</tr>
+<tr>
+<td align="left">14</td>
+<td align="left">SO</td>
+<td align="left">46</td>
+<td align="left">.</td>
+<td align="left">78</td>
+<td align="left">N</td>
+<td align="left">110</td>
+<td align="left">n</td>
+</tr>
+<tr>
+<td align="left">15</td>
+<td align="left">SI</td>
+<td align="left">47</td>
+<td align="left">/</td>
+<td align="left">79</td>
+<td align="left">O</td>
+<td align="left">111</td>
+<td align="left">o</td>
+</tr>
+<tr>
+<td align="left">16</td>
+<td align="left">DLE</td>
+<td align="left">48</td>
+<td align="left">0</td>
+<td align="left">80</td>
+<td align="left">P</td>
+<td align="left">112</td>
+<td align="left">p</td>
+</tr>
+<tr>
+<td align="left">17</td>
+<td align="left">DCI</td>
+<td align="left">49</td>
+<td align="left">1</td>
+<td align="left">81</td>
+<td align="left">Q</td>
+<td align="left">113</td>
+<td align="left">q</td>
+</tr>
+<tr>
+<td align="left">18</td>
+<td align="left">DC2</td>
+<td align="left">50</td>
+<td align="left">2</td>
+<td align="left">82</td>
+<td align="left">R</td>
+<td align="left">114</td>
+<td align="left">r</td>
+</tr>
+<tr>
+<td align="left">19</td>
+<td align="left">DC3</td>
+<td align="left">51</td>
+<td align="left">3</td>
+<td align="left">83</td>
+<td align="left">S</td>
+<td align="left">115</td>
+<td align="left">s</td>
+</tr>
+<tr>
+<td align="left">20</td>
+<td align="left">DC4</td>
+<td align="left">52</td>
+<td align="left">4</td>
+<td align="left">84</td>
+<td align="left">T</td>
+<td align="left">116</td>
+<td align="left">t</td>
+</tr>
+<tr>
+<td align="left">21</td>
+<td align="left">NAK</td>
+<td align="left">53</td>
+<td align="left">5</td>
+<td align="left">85</td>
+<td align="left">U</td>
+<td align="left">117</td>
+<td align="left">u</td>
+</tr>
+<tr>
+<td align="left">22</td>
+<td align="left">SYN</td>
+<td align="left">54</td>
+<td align="left">6</td>
+<td align="left">86</td>
+<td align="left">V</td>
+<td align="left">118</td>
+<td align="left">v</td>
+</tr>
+<tr>
+<td align="left">23</td>
+<td align="left">TB</td>
+<td align="left">55</td>
+<td align="left">7</td>
+<td align="left">87</td>
+<td align="left">W</td>
+<td align="left">119</td>
+<td align="left">w</td>
+</tr>
+<tr>
+<td align="left">24</td>
+<td align="left">CAN</td>
+<td align="left">56</td>
+<td align="left">8</td>
+<td align="left">88</td>
+<td align="left">X</td>
+<td align="left">120</td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">25</td>
+<td align="left">EM</td>
+<td align="left">57</td>
+<td align="left">9</td>
+<td align="left">89</td>
+<td align="left">Y</td>
+<td align="left">121</td>
+<td align="left">y</td>
+</tr>
+<tr>
+<td align="left">26</td>
+<td align="left">SUB</td>
+<td align="left">58</td>
+<td align="left">:</td>
+<td align="left">90</td>
+<td align="left">Z</td>
+<td align="left">122</td>
+<td align="left">z</td>
+</tr>
+<tr>
+<td align="left">27</td>
+<td align="left">ESC</td>
+<td align="left">59</td>
+<td align="left">;</td>
+<td align="left">91</td>
+<td align="left">[</td>
+<td align="left">123</td>
+<td align="left">{</td>
+</tr>
+<tr>
+<td align="left">28</td>
+<td align="left">FS</td>
+<td align="left">60</td>
+<td align="left">&lt;</td>
+<td align="left">92</td>
+<td align="left">/</td>
+<td align="left">124</td>
+<td align="left">|</td>
+</tr>
+<tr>
+<td align="left">29</td>
+<td align="left">GS</td>
+<td align="left">61</td>
+<td align="left">=</td>
+<td align="left">93</td>
+<td align="left">]</td>
+<td align="left">125</td>
+<td align="left">}</td>
+</tr>
+<tr>
+<td align="left">30</td>
+<td align="left">RS</td>
+<td align="left">62</td>
+<td align="left">&gt;</td>
+<td align="left">94</td>
+<td align="left">^</td>
+<td align="left">126</td>
+<td align="left">`</td>
+</tr>
+<tr>
+<td align="left">31</td>
+<td align="left">US</td>
+<td align="left">63</td>
+<td align="left">?</td>
+<td align="left">95</td>
+<td align="left">_</td>
+<td align="left">127</td>
+<td align="left">DEL</td>
+</tr>
+</tbody></table>
+<h4 id="场景1：字符串内的数字顺序排列"><a href="#场景1：字符串内的数字顺序排列" class="headerlink" title="场景1：字符串内的数字顺序排列"></a>场景1：字符串内的数字顺序排列</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"1326579855442651110"</span>;</span><br><span class="line">        System.out.println(str123(str));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span>  String <span class="title">str123</span><span class="params">(String Str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] chars = Str.toCharArray();</span><br><span class="line">    Arrays.sort(chars);</span><br><span class="line">    String result = <span class="keyword">new</span> String(chars);<span class="comment">//重新拼接，得到正序的字符串</span></span><br><span class="line">    String q = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;result.length() ; i++) &#123;</span><br><span class="line">        <span class="keyword">char</span>[] c = result.toCharArray();</span><br><span class="line">        q += c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：<span class="number">0111122344555566789</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="keyword">char</span>[]	toCharArray()</span><br><span class="line">          将此字符串转换为一个新的字符数组。</span><br><span class="line"> Arrays.sort()</span><br><span class="line">    	对数组进行排序</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景2：字符串内的数字倒序排列"><a href="#场景2：字符串内的数字倒序排列" class="headerlink" title="场景2：字符串内的数字倒序排列"></a>场景2：字符串内的数字倒序排列</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"135246"</span>;</span><br><span class="line">        System.out.println(str321(str));</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span>  String <span class="title">str321</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] chars = str.toCharArray();</span><br><span class="line">    Arrays.sort(chars);</span><br><span class="line">    String str2 = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = chars.length-<span class="number">1</span> ; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        str2+=chars[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str2;</span><br><span class="line">&#125;</span><br><span class="line">打印：<span class="number">654321</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="keyword">char</span>[]	toCharArray()</span><br><span class="line">          将此字符串转换为一个新的字符数组。</span><br><span class="line"><span class="keyword">for</span>循环倒序添加数组的角标内容到新对象str2、打印结果</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景3：字符串输出正序五角星、倒序五角星"><a href="#场景3：字符串输出正序五角星、倒序五角星" class="headerlink" title="场景3：字符串输出正序五角星、倒序五角星"></a>场景3：字符串输出正序五角星、倒序五角星</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++ ) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;<span class="number">5</span>-i ;k++ ) &#123;</span><br><span class="line">                System.out.print(<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=i;j++ ) &#123;</span><br><span class="line">                System.out.print(<span class="string">"*"</span>+<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(<span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">打印：</span><br><span class="line">    * </span><br><span class="line">   * * </span><br><span class="line">  * * * </span><br><span class="line"> * * * * </span><br><span class="line">* * * * *</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-字符串检验实例"><a href="#4-字符串检验实例" class="headerlink" title="4.字符串检验实例"></a>4.字符串检验实例</h3><h4 id="场景1：检验字符串是否包含数字"><a href="#场景1：检验字符串是否包含数字" class="headerlink" title="场景1：检验字符串是否包含数字"></a>场景1：检验字符串是否包含数字</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str123str"</span>;</span><br><span class="line">        System.out.println(str.contains(<span class="string">"123"</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">打印：<span class="keyword">true</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">          当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景2：检验字符串是否包含空格"><a href="#场景2：检验字符串是否包含空格" class="headerlink" title="场景2：检验字符串是否包含空格"></a>场景2：检验字符串是否包含空格</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str str"</span>;</span><br><span class="line">        System.out.println(str.contains(<span class="string">" "</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">打印：<span class="keyword">true</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">          当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景3：检验字符串是否包含特殊字符"><a href="#场景3：检验字符串是否包含特殊字符" class="headerlink" title="场景3：检验字符串是否包含特殊字符"></a>场景3：检验字符串是否包含特殊字符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str*str"</span>;</span><br><span class="line">        System.out.println(str.contains(<span class="string">"*"</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">打印：<span class="keyword">true</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">          当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景4：检验字符串是否包含换行符"><a href="#场景4：检验字符串是否包含换行符" class="headerlink" title="场景4：检验字符串是否包含换行符"></a>场景4：检验字符串是否包含换行符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       String str = <span class="string">"str12\r3str"</span>;</span><br><span class="line">        System.out.println(str.contains(<span class="string">"\r"</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">打印：<span class="keyword">true</span></span><br><span class="line">方法解释：</span><br><span class="line">		换行符： \r</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">          当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="场景5：检验字符串是否包含某一串字符串"><a href="#场景5：检验字符串是否包含某一串字符串" class="headerlink" title="场景5：检验字符串是否包含某一串字符串"></a>场景5：检验字符串是否包含某一串字符串</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str123str"</span>;</span><br><span class="line">        System.out.println(str.contains(<span class="string">"str"</span>));</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">打印：<span class="keyword">true</span></span><br><span class="line">方法解释：</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(CharSequence s)</span></span></span><br><span class="line"><span class="function">          当且仅当此字符串包含指定的 <span class="keyword">char</span> 值序列时，返回 <span class="keyword">true</span>。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-字符串转换实例"><a href="#5-字符串转换实例" class="headerlink" title="5.字符串转换实例"></a>5.字符串转换实例</h3><h4 id="涉及知识：-2"><a href="#涉及知识：-2" class="headerlink" title="涉及知识："></a>涉及知识：</h4><h5 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h5><p>​                    <a href="https://blog.csdn.net/zhangqunshuai/article/details/80660974" target="_blank" rel="noopener">Java集合中List,Set以及Map等集合体系详解(史上最全)</a></p>
+<h5 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h5><p>​                    <a href="https://www.cnblogs.com/wq-9/p/10305002.html" target="_blank" rel="noopener">包装类的基本用法</a></p>
+<h4 id="场景1：字符串转数字"><a href="#场景1：字符串转数字" class="headerlink" title="场景1：字符串转数字"></a>场景1：字符串转数字</h4><p>​        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"123"</span>;</span><br><span class="line">        System.out.println(Integer.valueOf(str));</span><br><span class="line">    &#125;</span><br><span class="line">打印：<span class="number">123</span></span><br><span class="line">方法解释：包装类可以自动拆箱装箱</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景2：字符串转字符"><a href="#场景2：字符串转字符" class="headerlink" title="场景2：字符串转字符"></a>场景2：字符串转字符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str"</span>;</span><br><span class="line">        <span class="keyword">char</span>[] chars = str.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;chars.length ; i++) &#123;</span><br><span class="line">            System.out.println(chars[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">打印：</span><br><span class="line">s</span><br><span class="line">t</span><br><span class="line">r</span><br><span class="line">方法解释：</span><br><span class="line"><span class="keyword">char</span>[]	toCharArray()</span><br><span class="line">          将此字符串转换为一个新的字符数组。</span><br><span class="line"><span class="keyword">for</span>循环打印每一个字符</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景3：字符串转数组"><a href="#场景3：字符串转数组" class="headerlink" title="场景3：字符串转数组"></a>场景3：字符串转数组</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str"</span>;</span><br><span class="line">        String[] split = str.split(<span class="string">""</span>);</span><br><span class="line">        System.out.println(Arrays.toString(split));</span><br><span class="line">    &#125;</span><br><span class="line">打印：[s, t, r]</span><br><span class="line">方法解释：</span><br><span class="line">java.util.Arrays 类是 JDK 提供的一个工具类，用来处理数组的各种方法。</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景4：字符串转map集合"><a href="#场景4：字符串转map集合" class="headerlink" title="场景4：字符串转map集合"></a>场景4：字符串转map集合</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"str:123,str2:345"</span>;</span><br><span class="line">        Map&lt;String, Object&gt; stringToMap = getStringToMap(str);</span><br><span class="line">        System.out.println(stringToMap.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String,Object&gt; <span class="title">getStringToMap</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="comment">//根据逗号截取字符串数组</span></span><br><span class="line">    String[] str1 = str.split(<span class="string">","</span>);</span><br><span class="line">    <span class="comment">//创建Map对象</span></span><br><span class="line">    Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="comment">//循环加入map集合</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str1.length; i++) &#123;</span><br><span class="line">        <span class="comment">//根据":"截取字符串数组</span></span><br><span class="line">        String[] str2 = str1[i].split(<span class="string">":"</span>);</span><br><span class="line">        <span class="comment">//str2[0]为KEY,str2[1]为值</span></span><br><span class="line">        map.put(str2[<span class="number">0</span>],str2[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打印：&#123;str=<span class="number">123</span>, str2=<span class="number">345</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景5：字符串转list集合"><a href="#场景5：字符串转list集合" class="headerlink" title="场景5：字符串转list集合"></a>场景5：字符串转list集合</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="string">"str:123,str2:345"</span>;</span><br><span class="line">    System.out.println(convertStringToList(str,<span class="string">","</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List <span class="title">convertStringToList</span><span class="params">(String str,String mark)</span> </span>&#123;</span><br><span class="line">    String[] strArray = str.split(mark);</span><br><span class="line">    List list = Arrays.asList(strArray);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">打印：[str:<span class="number">123</span>, str2:<span class="number">345</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、使用场景预测"><a href="#三、使用场景预测" class="headerlink" title="三、使用场景预测"></a>三、使用场景预测</h1>
+    </div>
+
+    
+    
+    
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LX
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.sqlsec.com/2019/12/java字符串常用操作.html" title="java字符串常用操作">http://www.sqlsec.com/2019/12/java字符串常用操作.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+              <a href="/tags/代码/" rel="tag"># 代码</a>
+            
+              <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/GithubPages-Hexo-阿里云域名打造自己的专属博客.html" rel="next" title="GithubPages + Hexo + 阿里云域名打造自己的专属博客">
+                  <i class="fa fa-chevron-left"></i> GithubPages + Hexo + 阿里云域名打造自己的专属博客
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、基础操作"><span class="nav-number">1.</span> <span class="nav-text">一、基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、String类简介"><span class="nav-number">1.1.</span> <span class="nav-text">1、String类简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、常用方法摘要"><span class="nav-number">1.2.</span> <span class="nav-text">2、常用方法摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字符串比较"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.字符串比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字符串截取"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.字符串截取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-字符串判断"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.字符串判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串转换"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.字符串转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、进阶理解"><span class="nav-number">2.</span> <span class="nav-text">二、进阶理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字符串切割实例"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.字符串切割实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉及知识："><span class="nav-number">2.0.1.1.</span> <span class="nav-text">涉及知识：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#角标："><span class="nav-number">2.0.1.1.1.</span> <span class="nav-text">角标：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景1：String字符串去掉前后空格并输出"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">场景1：String字符串去掉前后空格并输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景2：String字符串去掉前5个字符并输出"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">场景2：String字符串去掉前5个字符并输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景3：String字符串去掉后5个字符并输出"><span class="nav-number">2.0.1.4.</span> <span class="nav-text">场景3：String字符串去掉后5个字符并输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景4：String字符串去掉特殊符号并输出"><span class="nav-number">2.0.1.5.</span> <span class="nav-text">场景4：String字符串去掉特殊符号并输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景5：String字符串拼接String字符串并输出"><span class="nav-number">2.0.1.6.</span> <span class="nav-text">场景5：String字符串拼接String字符串并输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字符串替换实例"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.字符串替换实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景1：替换字符串出现的特殊字符为A"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">场景1：替换字符串出现的特殊字符为A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景2：替换字符串出现的空格为B"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">场景2：替换字符串出现的空格为B</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景3：替换字符串出现的字符串为指定字符串"><span class="nav-number">2.0.2.3.</span> <span class="nav-text">场景3：替换字符串出现的字符串为指定字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景4：替换字符串出现的字符串为数字"><span class="nav-number">2.0.2.4.</span> <span class="nav-text">场景4：替换字符串出现的字符串为数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景5：替换字符串出现的数字为C"><span class="nav-number">2.0.2.5.</span> <span class="nav-text">场景5：替换字符串出现的数字为C</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-字符串排序实例"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.字符串排序实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉及知识：-1"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">涉及知识：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#哈希值"><span class="nav-number">2.0.3.1.1.</span> <span class="nav-text">哈希值:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。"><span class="nav-number">2.0.3.1.2.</span> <span class="nav-text">1、Object类的hashCode：返回对象的内存地址经过处理后的结构，由于每个对象的内存地址都不一样，所以哈希码也不一样。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。"><span class="nav-number">2.0.3.1.3.</span> <span class="nav-text">2、String类的hashCode：根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串内容相同，返回的哈希码也相同。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer-i1-new-Integer-100-i1-hashCode的值就是100-。由此可见，2个一样大小的Integer对象，返回的哈希码也一样"><span class="nav-number">2.0.3.1.4.</span> <span class="nav-text">3、Integer类的hashCode：返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer i1=new Integer(100),i1.hashCode的值就是100 。由此可见，2个一样大小的Integer对象，返回的哈希码也一样</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、简单类型比较相等。用"><span class="nav-number">2.0.3.1.5.</span> <span class="nav-text">4、简单类型比较相等。用==</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ascll码："><span class="nav-number">2.0.3.1.6.</span> <span class="nav-text">Ascll码：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ascll码对照表"><span class="nav-number">2.0.3.1.7.</span> <span class="nav-text">Ascll码对照表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景1：字符串内的数字顺序排列"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">场景1：字符串内的数字顺序排列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景2：字符串内的数字倒序排列"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">场景2：字符串内的数字倒序排列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景3：字符串输出正序五角星、倒序五角星"><span class="nav-number">2.0.3.4.</span> <span class="nav-text">场景3：字符串输出正序五角星、倒序五角星</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串检验实例"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.字符串检验实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景1：检验字符串是否包含数字"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">场景1：检验字符串是否包含数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景2：检验字符串是否包含空格"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">场景2：检验字符串是否包含空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景3：检验字符串是否包含特殊字符"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">场景3：检验字符串是否包含特殊字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景4：检验字符串是否包含换行符"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">场景4：检验字符串是否包含换行符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景5：检验字符串是否包含某一串字符串"><span class="nav-number">2.0.4.5.</span> <span class="nav-text">场景5：检验字符串是否包含某一串字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-字符串转换实例"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.字符串转换实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉及知识：-2"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">涉及知识：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#集合"><span class="nav-number">2.0.5.1.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包装类"><span class="nav-number">2.0.5.1.2.</span> <span class="nav-text">包装类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景1：字符串转数字"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">场景1：字符串转数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景2：字符串转字符"><span class="nav-number">2.0.5.3.</span> <span class="nav-text">场景2：字符串转字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景3：字符串转数组"><span class="nav-number">2.0.5.4.</span> <span class="nav-text">场景3：字符串转数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景4：字符串转map集合"><span class="nav-number">2.0.5.5.</span> <span class="nav-text">场景4：字符串转map集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景5：字符串转list集合"><span class="nav-number">2.0.5.6.</span> <span class="nav-text">场景5：字符串转list集合</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、使用场景预测"><span class="nav-number">3.</span> <span class="nav-text">三、使用场景预测</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/sen1.png"
+      alt="LX">
+  <p class="site-author-name" itemprop="name">LX</p>
+  <div class="site-description" itemprop="description">无聊写写东西咯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LX</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=cw4bptm3UkLjL0BgWbuEqmwt-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'cw4bptm3UkLjL0BgWbuEqmwt-gzGzoHsz',
+            'X-LC-Key': 'stu24F9Xz87CHTDUNoIH70xC',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
